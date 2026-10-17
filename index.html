@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malak Emad Elbendary | Cybersecurity Engineer & Front-End Developer</title>
+  <meta name="description" content="Portfolio of Malak Emad Elbendary — Cybersecurity & Network Engineer, Penetration Tester, and Modern Front-End Web Developer.">
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"Fira Code"', 'monospace'],
+            cyber: ['"Rajdhani"', 'sans-serif'],
+          },
+          colors: {
+            cyber: {
+              black: '#040711',
+              darker: '#070d1e',
+              dark: '#0c152e',
+              slate: '#122044',
+              surface: '#15244e',
+              border: '#1f3570',
+              cyan: '#00f2fe',
+              cyanGlow: '#4facfe',
+              green: '#10b981',
+              neonGreen: '#00ff88',
+              emerald: '#059669',
+              amber: '#f59e0b',
+              red: '#f43f5e'
+            }
+          },
+          boxShadow: {
+            'neon-cyan': '0 0 25px -5px rgba(0, 242, 254, 0.45), 0 0 10px -2px rgba(0, 242, 254, 0.3)',
+            'neon-green': '0 0 25px -5px rgba(0, 255, 136, 0.4), 0 0 10px -2px rgba(0, 255, 136, 0.25)',
+            'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite',
+            'grid-move': 'gridMove 20s linear infinite',
+            'scanline': 'scanline 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            gridMove: {
+              '0%': { transform: 'translateY(0)' },
+              '100%': { transform: 'translateY(40px)' },
+            },
+            scanline: {
+              '0%': { transform: 'translateY(-100%)' },
+              '100%': { transform: 'translateY(1000%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 and ReactDOM -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+  <!-- Babel for JSX compilation in browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom styles -->
+  <style>
+    /* Cyber grid background */
+    .cyber-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 242, 254, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 242, 254, 0.04) 1px, transparent 1px);
+    }
+    
+    .cyber-dots {
+      background-image: radial-gradient(rgba(0, 242, 254, 0.15) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Custom glow borders */
+    .glow-border-cyan {
+      border: 1px solid rgba(0, 242, 254, 0.35);
+      box-shadow: 0 0 15px rgba(0, 242, 254, 0.15);
+    }
+    
+    .glow-border-green {
+      border: 1px solid rgba(0, 255, 136, 0.35);
+      box-shadow: 0 0 15px rgba(0, 255, 136, 0.15);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070d1e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f3570;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f2fe;
+    }
+
+    /* Glowing badge text */
+    .text-glow-cyan {
+      text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+    }
+    .text-glow-green {
+      text-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
+    }
+
+    /* Scanline effect */
+    .cyber-scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.8), transparent);
+      box-shadow: 0 0 10px rgba(0, 242, 254, 0.8);
+      opacity: 0.6;
+      animation: scanline 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-cyber-black text-slate-200 antialiased selection:bg-cyber-cyan selection:text-cyber-black font-sans min-h-screen relative overflow-x-hidden">
+  
+  <div id="root"></div>
+
+  <!-- Main React App Script -->
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    // Helper component to render Lucide Icons dynamically
+    const Icon = ({ name, className = "w-5 h-5", ...props }) => {
+      const iconRef = useRef(null);
+
+      useEffect(() => {
+        if (iconRef.current && window.lucide) {
+          iconRef.current.innerHTML = `<i data-lucide="${name}" class="${className}"></i>`;
+          try {
+            window.lucide.createIcons();
+          } catch (e) {
+            console.warn('Lucide icon render error:', e);
+          }
+        }
+      }, [name, className]);
+
+      return <span ref={iconRef} className={`inline-flex items-center justify-center ${className}`} {...props} />;
+    };
+
+    // Main App Component
+    function App() {
+      const [activeSection, setActiveSection] = useState('hero');
+      const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+      const [selectedProject, setSelectedProject] = useState(null);
+      const [cvModalOpen, setCvModalOpen] = useState(false);
+      const [selectedPhoto, setSelectedPhoto] = useState(null);
+      const [activeSkillCategory, setActiveSkillCategory] = useState('all');
+      const [copiedText, setCopiedText] = useState(null);
+
+      // Scroll spy for active section highlight
+      useEffect(() => {
+        const handleScroll = () => {
+          const sections = ['hero', 'about', 'trainings', 'skills', 'projects', 'gallery', 'contact'];
+          const scrollPos = window.scrollY + 200;
+
+          for (const sec of sections) {
+            const el = document.getElementById(sec);
+            if (el) {
+              const top = el.offsetTop;
+              const height = el.offsetHeight;
+              if (scrollPos >= top && scrollPos < top + height) {
+                setActiveSection(sec);
+                break;
+              }
+            }
+          }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+      }, []);
+
+      // Re-trigger icon rendering when modals or tabs toggle
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          if (window.lucide) {
+            try { window.lucide.createIcons(); } catch (e) {}
+          }
+        }, 50);
+        return () => clearTimeout(timer);
+      }, [selectedProject, cvModalOpen, selectedPhoto, activeSkillCategory, mobileMenuOpen]);
+
+      // Copy text to clipboard helper
+      const copyToClipboard = (text, label) => {
+        navigator.clipboard.writeText(text);
+        setCopiedText(label);
+        setTimeout(() => setCopiedText(null), 2500);
+      };
+
+      // Project Data
+      const projects = [
+        {
+          id: 'dvwa',
+          title: 'DVWA Web Vulnerability Assessment & Exploitation',
+          badge: 'Application Security Audit',
+          category: 'Cybersecurity',
+          date: 'Summer 2026',
+          icon: 'shield-alert',
+          shortDesc: 'Practical analysis and proof-of-concept testing for Reflected, Stored, and DOM-based XSS, SQLi, and CSRF vulnerabilities with secure coding remediation strategies.',
+          image: './assets/profile3.jpg',
+          accent: 'cyan',
+          tags: ['DVWA', 'Burp Suite', 'XSS Auditing', 'SQL Injection', 'OWASP Top 10', 'Remediation'],
+          overview: 'Conducted a structured penetration testing assessment on Damn Vulnerable Web Application (DVWA) across Low, Medium, and High security levels. Documented complete attack vectors, reproduction steps, impact matrices, and developer mitigation guidelines aligned with OWASP Top 10 standards.',
+          highlights: [
+            'Tested Reflected XSS payloads to bypass basic sanitization using URL encoding and nested event handlers.',
+            'Analyzed Stored XSS attack surfaces in guestbook parameters, verifying session hijacking risks via stolen cookies.',
+            'Conducted DOM-based XSS analysis within client-side JavaScript execution sinks.',
+            'Executed SQL Injection vectors (Error-based & Boolean Blind) to extract backend database schema details.',
+            'Formulated comprehensive defensive remediation patches including Context-Aware HTML Entity Encoding and Prepared Statements (PDO).'
+          ],
+          tools: ['Burp Suite Professional', 'OWASP ZAP', 'Firefox DevTools', 'Kali Linux', 'PHP/MySQL Source Review'],
+          codeSnippet: `// Remediation Example: Preventing Stored & Reflected XSS
+// 1. Prepared Statements for DB query execution
+$stmt = $pdo->prepare('INSERT INTO comments (user, message) VALUES (:u, :m)');
+$stmt->execute(['u' => $username, 'm' => $userMessage]);
+
+// 2. Safe contextual output escaping before rendering in HTML
+echo htmlspecialchars($userMessage, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');`
+        },
+        {
+          id: 'enterprise-network',
+          title: 'Multi-Switch Enterprise Network Architecture',
+          badge: 'Cisco CCNA Infrastructure',
+          category: 'Networking',
+          date: 'Summer 2026',
+          icon: 'network',
+          shortDesc: 'Designed and configured an enterprise-grade multi-layer network topology in Cisco Packet Tracer utilizing hierarchical VLANs, OSPF multi-area routing, and ACL security enforcement.',
+          image: './assets/profile3.jpg',
+          accent: 'green',
+          tags: ['Cisco Packet Tracer', 'OSPF', 'VLANs & Trunking', 'Inter-VLAN', 'Standard & Extended ACLs', 'EtherChannel'],
+          overview: 'Designed a highly available, segmented corporate network infrastructure from the ground up for a multi-department enterprise. Implemented robust campus LAN standards, redundancy protocols, dynamic routing, and granular access control lists to safeguard critical internal subnets.',
+          highlights: [
+            'Configured 802.1Q trunking and VTP domains across Core and Access layer Cisco Catalyst switches.',
+            'Implemented Router-on-a-Stick and Layer 3 Switch Inter-VLAN routing for segregated department communication (HR, IT, Finance, Guests).',
+            'Deployed OSPF routing protocol with optimized wildcard masks, cost metrics, and passive interfaces.',
+            'Configured LACP EtherChannel for link aggregation, doubling uplink throughput and providing physical link redundancy.',
+            'Engineered Extended Access Control Lists (ACLs) to deny guest subnet access to confidential database servers while permitting filtered HTTP/HTTPS and DNS traffic.',
+            'Configured IPv6 addressing with Stateless Address Autoconfiguration (SLAAC) and DHCPv6.'
+          ],
+          tools: ['Cisco Packet Tracer', 'Wireshark', 'CLI Router Config', 'Catalyst 2960/3650', 'Cisco 2911 ISR'],
+          codeSnippet: `! OSPF & Extended ACL Configuration Sample
+Router(config)# router ospf 1
+Router(config-router)# network 192.168.10.0 0.0.0.255 area 0
+Router(config-router)# passive-interface GigabitEthernet0/0
+Router(config-router)# exit
+
+! Restricting Guest VLAN to Internal DB Server
+Router(config)# ip access-list extended RESTRICT_GUEST_ACCESS
+Router(config-ext-nacl)# permit tcp 192.168.30.0 0.0.0.255 host 192.168.10.5 eq 443
+Router(config-ext-nacl)# deny ip 192.168.30.0 0.0.0.255 192.168.10.0 0.0.0.255
+Router(config-ext-nacl)# permit ip any any`
+        },
+        {
+          id: 'metasploitable',
+          title: 'Metasploitable Penetration Testing Audit',
+          badge: 'Offensive Security & Recon',
+          category: 'Cybersecurity',
+          date: 'Summer 2026',
+          icon: 'terminal',
+          shortDesc: 'Conducted end-to-end vulnerability scanning, service reconnaissance, and controlled exploitation on a vulnerable Linux VM using Nmap and the Metasploit Framework.',
+          image: './assets/profile4.jpg',
+          accent: 'cyan',
+          tags: ['Metasploit', 'Nmap Recon', 'Kali Linux', 'Vulnerability Assessment', 'CVSS Scoring', 'Audit Reporting'],
+          overview: 'Executed a complete vulnerability assessment simulation against target hosts within an isolated virtual laboratory environment. Focused on initial network scanning, OS fingerprinting, vulnerability mapping, and formulating remediation recommendations.',
+          highlights: [
+            'Conducted stealth SYN scans and aggressive service version detection (-sS -sV -sC -O) with Nmap.',
+            'Identified misconfigured and vulnerable legacy services: vsftpd 2.3.4, bind9, and vulnerable web daemons.',
+            'Researched Common Vulnerabilities and Exposures (CVEs) and validated proof-of-concepts via Metasploit console.',
+            'Demonstrated risk vectors regarding unpatched services, plain-text protocol exposures (Telnet/FTP), and default credential weaknesses.',
+            'Compiled an industry-grade penetration testing report with vulnerability severity ratings, CVSS metrics, and prioritized hardening recommendations.'
+          ],
+          tools: ['Kali Linux', 'Metasploit Framework (msfconsole)', 'Nmap Scripting Engine (NSE)', 'Searchsploit', 'Wireshark'],
+          codeSnippet: `# Nmap Comprehensive Reconnaissance Script
+nmap -sS -sV -sC -Pn -T4 -p- -oN audit_recon.txt 192.168.56.101
+
+# Metasploit Verification Workflow
+msfconsole -q
+msf6 > use auxiliary/scanner/portscan/syn
+msf6 auxiliary(syn) > set RHOSTS 192.168.56.101
+msf6 auxiliary(syn) > run`
+        }
+      ];
+
+      // Skill categories
+      const skillCategories = [
+        { id: 'all', label: 'All Domains' },
+        { id: 'cyber', label: 'Cybersecurity & Auditing' },
+        { id: 'network', label: 'Networking & Infrastructure' },
+        { id: 'web', label: 'Web Development' },
+        { id: 'soft', label: 'Professional & Soft Skills' }
+      ];
+
+      // Skills data
+      const skillsData = [
+        {
+          category: 'cyber',
+          title: 'Cybersecurity & PenTesting',
+          issuer: 'National Telecommunication Institute (NTI)',
+          icon: 'shield-check',
+          color: 'from-cyan-500/20 to-blue-600/10',
+          borderColor: 'border-cyan-500/40',
+          accentText: 'text-cyber-cyan',
+          skills: [
+            { name: 'Penetration Testing', level: 'Practical Labs', icon: 'crosshair' },
+            { name: 'Vulnerability Assessment', level: 'XSS, SQLi, CSRF', icon: 'search' },
+            { name: 'Burp Suite & OWASP ZAP', level: 'Proxy & Interception', icon: 'zap' },
+            { name: 'Metasploit Framework', level: 'Exploitation & Recon', icon: 'terminal' },
+            { name: 'Nmap & Network Recon', level: 'NSE, Port Scanning', icon: 'radar' },
+            { name: 'Kali Linux Environment', level: 'Security Distribution', icon: 'cpu' },
+            { name: 'DVWA Auditing', level: 'OWASP Top 10 PoC', icon: 'bug' }
+          ]
+        },
+        {
+          category: 'network',
+          title: 'Networking & Infrastructure',
+          issuer: 'National Telecommunication Institute (NTI)',
+          icon: 'server',
+          color: 'from-emerald-500/20 to-teal-600/10',
+          borderColor: 'border-cyber-green/40',
+          accentText: 'text-cyber-green',
+          skills: [
+            { name: 'Cisco CCNA Concepts', level: 'Routing & Switching', icon: 'layers' },
+            { name: 'Cisco Packet Tracer', level: 'Enterprise Topology Design', icon: 'git-merge' },
+            { name: 'VLANs & Trunking (802.1Q)', level: 'Network Segmentation', icon: 'split' },
+            { name: 'Inter-VLAN Routing', level: 'L3 Switching / RoAS', icon: 'shuffle' },
+            { name: 'OSPF Routing Protocol', level: 'Multi-Area Dynamic Routing', icon: 'compass' },
+            { name: 'EtherChannel (LACP/PAgP)', level: 'Link Aggregation', icon: 'link' },
+            { name: 'Access Control Lists (ACLs)', level: 'Standard & Extended', icon: 'lock' },
+            { name: 'IPv6, SLAAC & DHCPv6', level: 'Next-Gen IP Protocols', icon: 'globe' }
+          ]
+        },
+        {
+          category: 'web',
+          title: 'Modern Web Engineering',
+          issuer: 'NextGen Initiative & Self-Driven',
+          icon: 'code',
+          color: 'from-cyan-500/20 to-indigo-600/10',
+          borderColor: 'border-cyan-400/40',
+          accentText: 'text-cyan-400',
+          skills: [
+            { name: 'React.js', level: 'Modern Hooks, State, Modals', icon: 'atom' },
+            { name: 'Tailwind CSS', level: 'Cyber Modern Aesthetics', icon: 'palette' },
+            { name: 'JavaScript (ES6+)', level: 'Async/Await, DOM, APIs', icon: 'file-code' },
+            { name: 'HTML5 Semantic Structure', level: 'Accessible & Clean Code', icon: 'layout' },
+            { name: 'CSS3 & Modern Layouts', level: 'Flexbox, Grid, Animations', icon: 'sparkles' },
+            { name: 'Responsive Web Design', level: 'Mobile-First Architecture', icon: 'smartphone' }
+          ]
+        },
+        {
+          category: 'soft',
+          title: 'Soft Skills & Leadership',
+          issuer: 'Academic & Professional Practice',
+          icon: 'award',
+          color: 'from-amber-500/20 to-orange-600/10',
+          borderColor: 'border-amber-400/40',
+          accentText: 'text-amber-400',
+          skills: [
+            { name: 'Analytical Problem Solving', level: 'Root Cause Security Analysis', icon: 'cpu' },
+            { name: 'Teamwork & Collaboration', level: 'Cross-functional Group Labs', icon: 'users' },
+            { name: 'Technical Report Writing', level: 'Audit & PenTest Deliverables', icon: 'file-text' },
+            { name: 'Effective Communication', level: 'Clear Technical Articulation', icon: 'message-square' },
+            { name: 'Time & Project Management', level: 'Milestone Delivery', icon: 'clock' }
+          ]
+        }
+      ];
+
+      // Trainings & Certifications
+      const trainings = [
+        {
+          id: 1,
+          title: 'Cybersecurity Summer Training',
+          provider: 'National Telecommunication Institute (NTI)',
+          badge: 'Summer Training Program',
+          period: 'Intensive Technical Program',
+          icon: 'shield-check',
+          glow: 'cyan',
+          description: 'Hands-on intensive laboratory training in penetration testing methodologies, vulnerability assessments (XSS, SQL Injection, CSRF), network scanning, and web application security auditing.',
+          topics: ['Web Application Security', 'XSS & SQL Injection Labs', 'Kali Linux Tooling', 'Burp Suite Interception', 'Penetration Testing Methodology', 'Security Audit Reporting']
+        },
+        {
+          id: 2,
+          title: 'Network Infrastructure & Cisco CCNA',
+          provider: 'National Telecommunication Institute (NTI)',
+          badge: 'Enterprise Networking',
+          period: 'Professional Track',
+          icon: 'network',
+          glow: 'green',
+          description: 'Comprehensive practical training in configuring scalable enterprise network topologies, VLAN segmentation, inter-VLAN routing, OSPF dynamic routing, EtherChannel, ACL security filters, and IPv6 services.',
+          topics: ['Cisco Enterprise Topologies', 'VLANs & 802.1Q Trunking', 'OSPF Dynamic Routing', 'Extended ACL Security', 'Link Aggregation (LACP)', 'SLAAC & DHCPv6 Addressing']
+        },
+        {
+          id: 3,
+          title: 'Web Development Track',
+          provider: 'NextGen Initiative',
+          badge: 'Frontend Foundations',
+          period: 'Industry Track',
+          icon: 'layout',
+          glow: 'cyan',
+          description: 'Core foundational training covering semantic HTML5 architecture, modern CSS3 styling, responsive layouts, and modern JavaScript (ES6+) for interactive web interfaces.',
+          topics: ['Semantic HTML5', 'Advanced CSS3 & Flex/Grid', 'JavaScript ES6+ Syntax', 'DOM Manipulation', 'Event Handling', 'Mobile-First Layouts']
+        },
+        {
+          id: 4,
+          title: 'React Frontend Development',
+          provider: 'Self-Learned & Hands-on Projects',
+          badge: 'Component Architecture',
+          period: 'Continuous Learning',
+          icon: 'code-2',
+          glow: 'green',
+          description: 'Dedicated exploration and building of modern, component-driven user interfaces using React.js, Tailwind CSS, reusable state hooks, modular component structure, and modern developer tooling.',
+          topics: ['React Component Lifecycle', 'Hooks (useState, useEffect, useRef)', 'Tailwind CSS Utility Styling', 'Interactive Modals & UI States', 'Responsive Dark Theme Systems']
+        }
+      ];
+
+      // Gallery Photos (Curated Showcase)
+      const galleryPhotos = [
+        {
+          src: './assets/profile1.jpg',
+          title: 'Executive Professional Headshot',
+          subtitle: 'Formal representation — Black blazer portrait',
+          category: 'Official Portrait',
+          tag: 'Security Professional'
+        },
+        {
+          src: './assets/profile3.jpg',
+          title: 'Faculty of Computers & AI Campus Life',
+          subtitle: 'In the academic technology lab & classroom environment',
+          category: 'Academic Milestone',
+          tag: 'CS Student'
+        },
+        {
+          src: './assets/profile4.jpg',
+          title: 'Vibrant Dynamic Persona',
+          subtitle: 'Creative and collaborative spirit outside the terminal',
+          category: 'Creative Side',
+          tag: 'Innovator'
+        }
+      ];
+
+      // Interactive Terminal state
+      const [terminalInput, setTerminalInput] = useState('');
+      const [terminalHistory, setTerminalHistory] = useState([
+        { type: 'system', text: 'MalakOS v2.4 Security Console Initialized.' },
+        { type: 'system', text: 'Type "help" to list available security commands.' }
+      ]);
+
+      const handleTerminalSubmit = (e) => {
+        e.preventDefault();
+        const cmd = terminalInput.trim().toLowerCase();
+        if (!cmd) return;
+
+        const newHistory = [...terminalHistory, { type: 'user', text: `$ ${terminalInput}` }];
+
+        switch (cmd) {
+          case 'help':
+            newHistory.push({
+              type: 'output',
+              text: 'Available Commands: whoami, skills, trainings, projects, certs, cv, contact, clear'
+            });
+            break;
+          case 'whoami':
+            newHistory.push({
+              type: 'output',
+              text: 'Malak Emad Elbendary — Cybersecurity & Network Engineer | Front-End Developer. Faculty of Computers & Artificial Intelligence student.'
+            });
+            break;
+          case 'skills':
+            newHistory.push({
+              type: 'output',
+              text: 'Domains: [Cybersecurity: PenTesting, XSS/SQLi, Burp Suite, Metasploit, Nmap] | [Networking: Cisco CCNA, VLANs, OSPF, ACLs, SLAAC] | [Web: React.js, Tailwind CSS, JS ES6+]'
+            });
+            break;
+          case 'trainings':
+          case 'certs':
+            newHistory.push({
+              type: 'output',
+              text: 'Certifications & Programs: NTI Cybersecurity Summer Training | NTI Network Infrastructure & Cisco CCNA | NextGen Web Development Track | React UI Engineering.'
+            });
+            break;
+          case 'projects':
+            newHistory.push({
+              type: 'output',
+              text: 'Projects: 1) DVWA Web Vulnerability Assessment  2) Multi-Switch Enterprise Network Architecture  3) Metasploitable Penetration Testing Audit.'
+            });
+            break;
+          case 'cv':
+            setCvModalOpen(true);
+            newHistory.push({
+              type: 'output',
+              text: 'Opening Malak Emad Elbendary Curriculum Vitae (CV) modal...'
+            });
+            break;
+          case 'contact':
+            newHistory.push({
+              type: 'output',
+              text: 'Email: malak.elbendary.sec@gmail.com | LinkedIn: https://www.linkedin.com/in/malak-emad-elbendary | Location: Egypt (Open to Remote/Onsite)'
+            });
+            break;
+          case 'clear':
+            setTerminalHistory([]);
+            setTerminalInput('');
+            return;
+          default:
+            newHistory.push({
+              type: 'error',
+              text: `Command not recognized: "${cmd}". Type "help" for a list of valid commands.`
+            });
+        }
+
+        setTerminalHistory(newHistory);
+        setTerminalInput('');
+      };
+
+      return (
+        <div className="relative min-h-screen text-slate-200">
+          {/* Cyber background overlay */}
+          <div className="fixed inset-0 pointer-events-none z-0">
+            <div className="absolute inset-0 bg-cyber-black"></div>
+            <div className="absolute inset-0 cyber-grid opacity-35"></div>
+            <div className="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-1/3 -right-40 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-20 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
+            <div className="cyber-scanline"></div>
+          </div>
+
+          {/* Top Security Status Bar */}
+          <div className="relative z-50 bg-cyber-darker/90 backdrop-blur-md border-b border-cyber-border text-xs font-mono py-1.5 px-4 text-slate-400">
+            <div className="max-w-7xl mx-auto flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5 text-cyber-neonGreen">
+                  <span className="w-2 h-2 rounded-full bg-cyber-neonGreen animate-ping"></span>
+                  <span className="w-2 h-2 rounded-full bg-cyber-neonGreen -ml-3.5"></span>
+                  SECURE_TUNNEL: ACTIVE
+                </span>
+                <span className="hidden sm:inline text-slate-600">|</span>
+                <span className="hidden sm:inline text-slate-400">HOST: malak-elbendary.security.net</span>
+                <span className="hidden md:inline text-slate-600">|</span>
+                <span className="hidden md:inline text-cyber-cyan">PROTOCOL: TLS_AES_256_GCM_SHA384</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-slate-400 flex items-center gap-1">
+                  <Icon name="shield-check" className="w-3.5 h-3.5 text-cyber-cyan" />
+                  OWASP & CISCO ALIGNED
+                </span>
+                <button 
+                  onClick={() => setCvModalOpen(true)}
+                  className="hidden sm:flex items-center gap-1 text-cyber-cyan hover:text-white transition-colors"
+                >
+                  <Icon name="file-text" className="w-3.5 h-3.5" />
+                  <span>PREVIEW CV</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Navigation Bar */}
+          <header className="sticky top-0 z-40 bg-cyber-darker/80 backdrop-blur-xl border-b border-cyber-slate/80">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+              {/* Brand Logo */}
+              <a href="#hero" className="flex items-center gap-3 group">
+                <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-green p-[2px] transition-transform group-hover:scale-105">
+                  <div className="w-full h-full bg-cyber-darker rounded-[10px] flex items-center justify-center">
+                    <span className="font-mono font-black text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green text-lg tracking-wider">
+                      ME
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-white tracking-wide text-lg font-sans">Malak Elbendary</span>
+                    <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-cyan-500/10 text-cyber-cyan border border-cyan-500/30">
+                      SEC_ENG
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400 font-mono block -mt-0.5">Faculty of Computers & AI</span>
+                </div>
+              </a>
+
+              {/* Desktop Nav Links */}
+              <nav className="hidden lg:flex items-center gap-1">
+                {[
+                  { id: 'hero', label: 'Home' },
+                  { id: 'about', label: 'About' },
+                  { id: 'trainings', label: 'Trainings' },
+                  { id: 'skills', label: 'Skills' },
+                  { id: 'projects', label: 'Projects' },
+                  { id: 'gallery', label: 'Gallery' },
+                  { id: 'contact', label: 'Contact' }
+                ].map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 relative ${
+                      activeSection === item.id
+                        ? 'text-cyber-cyan bg-cyber-slate/60 shadow-sm'
+                        : 'text-slate-300 hover:text-white hover:bg-cyber-slate/30'
+                    }`}
+                  >
+                    {item.label}
+                    {activeSection === item.id && (
+                      <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-[2px] bg-cyber-cyan rounded-full shadow-[0_0_8px_#00f2fe]"></span>
+                    )}
+                  </a>
+                ))}
+              </nav>
+
+              {/* Action Buttons */}
+              <div className="hidden sm:flex items-center gap-3">
+                <button
+                  onClick={() => setCvModalOpen(true)}
+                  className="px-4 py-2 rounded-lg text-xs font-mono font-semibold text-slate-200 border border-cyber-border hover:border-cyber-cyan/50 hover:bg-cyber-slate/40 hover:text-cyber-cyan transition-all flex items-center gap-2"
+                >
+                  <Icon name="file-down" className="w-4 h-4 text-cyber-cyan" />
+                  <span>Curriculum Vitae</span>
+                </button>
+                <a
+                  href="#contact"
+                  className="px-4 py-2 rounded-lg text-xs font-mono font-semibold text-cyber-black bg-gradient-to-r from-cyber-cyan to-cyber-green hover:shadow-neon-cyan transition-all transform hover:-translate-y-0.5 flex items-center gap-2"
+                >
+                  <Icon name="send" className="w-3.5 h-3.5" />
+                  <span>Initiate Contact</span>
+                </a>
+              </div>
+
+              {/* Mobile menu button */}
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="lg:hidden p-2.5 rounded-lg border border-cyber-border text-slate-300 hover:text-white hover:bg-cyber-slate/50"
+                aria-label="Toggle Navigation Menu"
+              >
+                <Icon name={mobileMenuOpen ? 'x' : 'menu'} className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Mobile Drawer */}
+            {mobileMenuOpen && (
+              <div className="lg:hidden bg-cyber-darker/95 border-b border-cyber-border px-4 py-6 space-y-3 backdrop-blur-xl">
+                {[
+                  { id: 'hero', label: 'Home' },
+                  { id: 'about', label: 'About Malak' },
+                  { id: 'trainings', label: 'Trainings & Certs' },
+                  { id: 'skills', label: 'Technical Skills' },
+                  { id: 'projects', label: 'Featured Projects' },
+                  { id: 'gallery', label: 'Photo Gallery' },
+                  { id: 'contact', label: 'Get in Touch' }
+                ].map((item) => (
+                  <a
+                    key={item.id}
+                    href={`#${item.id}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`block px-4 py-3 rounded-lg text-base font-medium transition-all ${
+                      activeSection === item.id
+                        ? 'text-cyber-cyan bg-cyber-slate/80 font-semibold'
+                        : 'text-slate-300 hover:bg-cyber-slate/40'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+                <div className="pt-4 border-t border-cyber-slate/80 flex flex-col gap-3">
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setCvModalOpen(true);
+                    }}
+                    className="w-full py-3 rounded-lg text-sm font-mono font-semibold text-center border border-cyber-cyan/40 text-cyber-cyan hover:bg-cyber-cyan/10 flex items-center justify-center gap-2"
+                  >
+                    <Icon name="file-down" className="w-4 h-4" />
+                    <span>Download CV (ATS Resume)</span>
+                  </button>
+                  <a
+                    href="#contact"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full py-3 rounded-lg text-sm font-mono font-semibold text-center bg-gradient-to-r from-cyber-cyan to-cyber-green text-cyber-black flex items-center justify-center gap-2"
+                  >
+                    <Icon name="mail" className="w-4 h-4" />
+                    <span>Contact Me</span>
+                  </a>
+                </div>
+              </div>
+            )}
+          </header>
+
+          {/* Main Content Area */}
+          <main className="relative z-10">
+
+            {/* ======================================================== */}
+            {/* 1. HERO SECTION */}
+            {/* ======================================================== */}
+            <section id="hero" className="pt-12 pb-20 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                {/* Left Column: Text & CTAs */}
+                <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
+                  
+                  {/* Status Badge */}
+                  <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyber-slate/60 border border-cyber-cyan/30 backdrop-blur-md">
+                    <span className="w-2.5 h-2.5 rounded-full bg-cyber-neonGreen animate-pulse"></span>
+                    <span className="text-xs font-mono text-slate-300 font-medium">
+                      Security Auditor & Front-End Developer
+                    </span>
+                    <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20">
+                      Available for Roles
+                    </span>
+                  </div>
+
+                  {/* Main Headings */}
+                  <div className="space-y-3">
+                    <p className="text-cyber-cyan font-mono text-base md:text-lg tracking-wider font-semibold">
+                      HELLO, I AM
+                    </p>
+                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white font-sans">
+                      Malak Emad <br />
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-teal-300 to-cyber-green text-glow-cyan">
+                        Elbendary
+                      </span>
+                    </h1>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-300 font-cyber tracking-wide">
+                      Cybersecurity & Network Engineer <span className="text-cyber-cyan">|</span> Front-End Developer
+                    </h2>
+                  </div>
+
+                  {/* Tagline */}
+                  <p className="text-base sm:text-lg text-slate-400 leading-relaxed font-sans max-w-2xl mx-auto lg:mx-0">
+                    Faculty of Computers & Artificial Intelligence student passionate about <span className="text-white font-medium">Penetration Testing</span>, <span className="text-white font-medium">Cisco Network Infrastructure</span>, and building sleek, modern <span className="text-white font-medium">Web Applications</span>.
+                  </p>
+
+                  {/* Quick Skill Badges */}
+                  <div className="flex flex-wrap gap-2 justify-center lg:justify-start pt-2">
+                    {[
+                      { icon: 'shield', text: 'PenTesting & Vulnerability Assessment' },
+                      { icon: 'network', text: 'Cisco CCNA & Packet Tracer' },
+                      { icon: 'atom', text: 'React.js & Tailwind CSS' },
+                      { icon: 'award', text: 'NTI Trained' }
+                    ].map((badge, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono bg-cyber-dark/80 border border-cyber-border text-slate-300"
+                      >
+                        <Icon name={badge.icon} className="w-3.5 h-3.5 text-cyber-cyan" />
+                        {badge.text}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* CTA Buttons */}
+                  <div className="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
+                    <button
+                      onClick={() => setCvModalOpen(true)}
+                      className="px-6 py-3.5 rounded-xl font-mono text-sm font-bold text-cyber-black bg-gradient-to-r from-cyber-cyan to-cyber-green hover:shadow-neon-cyan transition-all transform hover:-translate-y-1 flex items-center gap-2.5"
+                    >
+                      <Icon name="download" className="w-4 h-4" />
+                      <span>Download Resume (CV)</span>
+                    </button>
+                    
+                    <a
+                      href="#projects"
+                      className="px-6 py-3.5 rounded-xl font-mono text-sm font-semibold text-slate-200 border border-cyber-cyan/40 hover:bg-cyber-cyan/10 hover:border-cyber-cyan transition-all flex items-center gap-2"
+                    >
+                      <Icon name="code" className="w-4 h-4 text-cyber-cyan" />
+                      <span>Explore Projects</span>
+                    </a>
+
+                    <a
+                      href="https://www.linkedin.com/in/malak-emad-elbendary"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="px-5 py-3.5 rounded-xl font-mono text-sm font-semibold text-blue-400 border border-blue-500/40 hover:bg-blue-500/10 hover:border-blue-400 hover:text-white transition-all flex items-center gap-2"
+                      title="Visit LinkedIn Profile"
+                    >
+                      <Icon name="linkedin" className="w-4 h-4 text-blue-400" />
+                      <span>LinkedIn</span>
+                    </a>
+
+                    <a
+                      href="#contact"
+                      className="px-5 py-3.5 rounded-xl font-mono text-sm font-semibold text-slate-400 hover:text-white border border-cyber-border hover:border-slate-500 hover:bg-cyber-slate/30 transition-all flex items-center gap-2"
+                    >
+                      <Icon name="terminal" className="w-4 h-4 text-cyber-neonGreen" />
+                      <span>Contact Me</span>
+                    </a>
+                  </div>
+
+                  {/* Quick Stat Counter Bar */}
+                  <div className="pt-6 grid grid-cols-3 gap-4 border-t border-cyber-slate/80 text-left max-w-lg mx-auto lg:mx-0">
+                    <div>
+                      <div className="text-2xl font-bold font-mono text-cyber-cyan">4+</div>
+                      <div className="text-xs text-slate-400">Major Industry Trainings</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold font-mono text-cyber-green">100%</div>
+                      <div className="text-xs text-slate-400">Hands-on Security Labs</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold font-mono text-white">NTI</div>
+                      <div className="text-xs text-slate-400">Certified Graduate</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Right Column: Hero Profile Avatar with Glowing Neon Border */}
+                <div className="lg:col-span-5 flex justify-center items-center">
+                  <div className="relative group">
+                    
+                    {/* Multi-layered Neon Glow rings */}
+                    <div className="absolute -inset-1.5 bg-gradient-to-r from-cyber-cyan via-teal-400 to-cyber-neonGreen rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition duration-1000 group-hover:duration-300 animate-pulse-slow"></div>
+                    <div className="absolute -inset-0.5 bg-gradient-to-tr from-cyber-cyan to-cyber-neonGreen rounded-3xl opacity-90"></div>
+
+                    {/* Main Avatar Card Frame */}
+                    <div className="relative w-72 sm:w-80 md:w-96 rounded-[22px] bg-cyber-darker p-3 shadow-2xl overflow-hidden">
+                      
+                      {/* Cyber corner accents */}
+                      <div className="absolute top-2 left-2 w-3 h-3 border-t-2 border-l-2 border-cyber-cyan"></div>
+                      <div className="absolute top-2 right-2 w-3 h-3 border-t-2 border-r-2 border-cyber-cyan"></div>
+                      <div className="absolute bottom-2 left-2 w-3 h-3 border-b-2 border-l-2 border-cyber-green"></div>
+                      <div className="absolute bottom-2 right-2 w-3 h-3 border-b-2 border-r-2 border-cyber-green"></div>
+
+                      {/* Image Container with Scanline effect */}
+                      <div className="relative rounded-2xl overflow-hidden aspect-[4/5] bg-cyber-dark">
+                        <img
+                          src="./assets/profile1.jpg"
+                          alt="Malak Emad Elbendary"
+                          className="w-full h-full object-cover object-top filter contrast-[1.05] brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyber-darker via-transparent to-transparent opacity-60"></div>
+                        
+                        {/* Live Security Tag Badge */}
+                        <div className="absolute bottom-3 left-3 right-3 bg-cyber-darker/90 backdrop-blur-md p-3 rounded-xl border border-cyber-border/80 flex items-center justify-between">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center">
+                              <Icon name="shield-check" className="w-4 h-4 text-cyber-cyan" />
+                            </div>
+                            <div>
+                              <div className="text-xs font-bold text-white">Malak Elbendary</div>
+                              <div className="text-[10px] text-cyber-cyan font-mono">FCAI-CS Student & PenTester</div>
+                            </div>
+                          </div>
+                          <span className="w-2.5 h-2.5 rounded-full bg-cyber-neonGreen animate-ping"></span>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    {/* Floating Tech Badges around avatar */}
+                    <div className="hidden sm:flex absolute -top-5 -right-5 bg-cyber-darker/95 border border-cyan-500/40 backdrop-blur-md px-3.5 py-2 rounded-xl shadow-lg items-center gap-2 animate-float">
+                      <Icon name="terminal" className="w-4 h-4 text-cyber-cyan" />
+                      <span className="text-xs font-mono font-bold text-white">OWASP / Burp Suite</span>
+                    </div>
+
+                    <div className="hidden sm:flex absolute -bottom-5 -left-5 bg-cyber-darker/95 border border-emerald-500/40 backdrop-blur-md px-3.5 py-2 rounded-xl shadow-lg items-center gap-2 animate-float" style={{ animationDelay: '2s' }}>
+                      <Icon name="server" className="w-4 h-4 text-cyber-neonGreen" />
+                      <span className="text-xs font-mono font-bold text-white">Cisco CCNA / OSPF</span>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Interactive Security Console / Terminal */}
+              <div className="mt-16 bg-cyber-darker/90 rounded-2xl border border-cyber-border shadow-2xl overflow-hidden max-w-4xl mx-auto">
+                <div className="px-4 py-3 bg-cyber-dark flex items-center justify-between border-b border-cyber-border">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
+                    <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block"></span>
+                    <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
+                    <span className="text-xs font-mono text-slate-400 ml-2">bash - malak@cyber-station:~</span>
+                  </div>
+                  <div className="text-[11px] font-mono text-cyber-cyan flex items-center gap-1.5">
+                    <Icon name="activity" className="w-3.5 h-3.5" />
+                    <span>INTERACTIVE CONSOLE</span>
+                  </div>
+                </div>
+
+                <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-2 max-h-56 overflow-y-auto">
+                  {terminalHistory.map((item, idx) => (
+                    <div key={idx} className="leading-relaxed">
+                      {item.type === 'system' && (
+                        <div className="text-slate-400"># {item.text}</div>
+                      )}
+                      {item.type === 'user' && (
+                        <div className="text-cyber-cyan font-bold">{item.text}</div>
+                      )}
+                      {item.type === 'output' && (
+                        <div className="text-slate-200 pl-4 border-l-2 border-cyber-green/50">{item.text}</div>
+                      )}
+                      {item.type === 'error' && (
+                        <div className="text-cyber-red pl-4 border-l-2 border-red-500/50">{item.text}</div>
+                      )}
+                    </div>
+                  ))}
+
+                  <form onSubmit={handleTerminalSubmit} className="flex items-center gap-2 pt-2">
+                    <span className="text-cyber-neonGreen font-bold">malak@security:~$</span>
+                    <input
+                      type="text"
+                      value={terminalInput}
+                      onChange={(e) => setTerminalInput(e.target.value)}
+                      placeholder='type "help", "whoami", "projects", or "cv"...'
+                      className="flex-1 bg-transparent border-none outline-none text-white font-mono placeholder-slate-600 focus:ring-0"
+                    />
+                    <button type="submit" className="text-cyber-cyan text-xs hover:text-white px-2 py-1 rounded bg-cyber-slate/50">
+                      Execute
+                    </button>
+                  </form>
+                </div>
+              </div>
+
+            </section>
+
+
+            {/* ======================================================== */}
+            {/* 2. ABOUT MALAK SECTION */}
+            {/* ======================================================== */}
+            <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-cyber-slate/60">
+              <div className="text-center space-y-3 mb-16">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyber-cyan/10 text-cyber-cyan text-xs font-mono border border-cyber-cyan/20">
+                  <Icon name="user-check" className="w-3.5 h-3.5" />
+                  BACKGROUND & ASPIRATIONS
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                  About <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green">Malak Emad</span>
+                </h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                  Bridging the critical gap between offensive security testing, resilient network topology architecture, and intuitive user experiences.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                {/* Visual Card with Secondary Profile Photo */}
+                <div className="lg:col-span-5">
+                  <div className="relative rounded-2xl p-1 bg-gradient-to-b from-cyber-cyan/30 via-transparent to-cyber-green/30">
+                    <div className="bg-cyber-darker rounded-[14px] p-4 sm:p-6 space-y-6">
+                      <div className="relative rounded-xl overflow-hidden aspect-[4/5] group">
+                        <img
+                          src="./assets/profile3.jpg"
+                          alt="Malak Emad at Faculty of Computers & AI"
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-cyber-darker via-transparent opacity-40"></div>
+                        <div className="absolute top-3 left-3 bg-cyber-darker/90 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono text-cyber-cyan border border-cyber-cyan/30">
+                          Academic & Tech Life
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="text-sm font-semibold text-white flex items-center justify-between">
+                          <span>Faculty of Computers & AI</span>
+                          <span className="text-cyber-green font-mono text-xs">Computer Science Major</span>
+                        </div>
+                        <p className="text-xs text-slate-400 leading-relaxed">
+                          Demonstrated commitment to rigorous academic excellence combined with active participation in Egypt's top technical initiatives (NTI, NextGen).
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* About Content & Pillar Cards */}
+                <div className="lg:col-span-7 space-y-6">
+                  
+                  {/* Bio quote card */}
+                  <div className="p-6 rounded-2xl bg-cyber-darker/80 border border-cyber-border relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-cyber-cyan/5 rounded-full blur-2xl"></div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center shrink-0">
+                        <Icon name="quote" className="w-5 h-5 text-cyber-cyan" />
+                      </div>
+                      <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
+                        "I am a Computer Science student with hands-on technical training from leading national initiatives and industry programs. I specialize in web application security auditing, vulnerability assessment, enterprise network topology configuration, and building interactive web applications."
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 3 Core Competency Pillars */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    
+                    <div className="p-5 rounded-xl bg-cyber-dark/60 border border-cyber-border hover:border-cyber-cyan/50 transition-colors space-y-2">
+                      <div className="w-8 h-8 rounded-lg bg-cyber-cyan/10 flex items-center justify-center text-cyber-cyan">
+                        <Icon name="shield-alert" className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-bold text-white text-sm">Penetration Testing</h3>
+                      <p className="text-xs text-slate-400">
+                        Methodical vulnerability discovery, OWASP Top 10 analysis (XSS, SQLi), and defensive remediation.
+                      </p>
+                    </div>
+
+                    <div className="p-5 rounded-xl bg-cyber-dark/60 border border-cyber-border hover:border-cyber-green/50 transition-colors space-y-2">
+                      <div className="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-neonGreen">
+                        <Icon name="network" className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-bold text-white text-sm">Cisco Networking</h3>
+                      <p className="text-xs text-slate-400">
+                        Designing robust multi-switch topologies, VLAN routing, OSPF, and granular ACL security policies.
+                      </p>
+                    </div>
+
+                    <div className="p-5 rounded-xl bg-cyber-dark/60 border border-cyber-border hover:border-cyan-400/50 transition-colors space-y-2">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-cyan-400">
+                        <Icon name="code-2" className="w-4 h-4" />
+                      </div>
+                      <h3 className="font-bold text-white text-sm">Front-End Engineering</h3>
+                      <p className="text-xs text-slate-400">
+                        Crafting component-driven, responsive user interfaces with React.js, Tailwind CSS, and modern JS.
+                      </p>
+                    </div>
+
+                  </div>
+
+                  {/* Education & Academic info banner */}
+                  <div className="p-4 rounded-xl bg-cyber-slate/30 border border-cyber-border flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-cyber-cyan">
+                        <Icon name="graduation-cap" className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <div className="text-sm font-bold text-white">Faculty of Computers & Artificial Intelligence</div>
+                        <div className="text-xs text-slate-400">Bachelor of Science in Computer Science</div>
+                      </div>
+                    </div>
+                    <span className="hidden sm:inline text-xs font-mono text-cyber-cyan bg-cyber-cyan/10 px-2.5 py-1 rounded border border-cyber-cyan/20">
+                      Active Student
+                    </span>
+                  </div>
+
+                </div>
+
+              </div>
+            </section>
+
+
+            {/* ======================================================== */}
+            {/* 3. TRAININGS & CERTIFICATIONS */}
+            {/* ======================================================== */}
+            <section id="trainings" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-cyber-slate/60">
+              <div className="text-center space-y-3 mb-16">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyber-green/10 text-cyber-neonGreen text-xs font-mono border border-cyber-green/20">
+                  <Icon name="award" className="w-3.5 h-3.5" />
+                  VERIFIED INDUSTRY TRACKS
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                  Trainings & <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-green to-cyber-cyan">Certifications</span>
+                </h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                  Rigorous hands-on programs from top Egyptian national institutes and self-directed engineering disciplines.
+                </p>
+              </div>
+
+              {/* Timeline Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {trainings.map((item) => (
+                  <div
+                    key={item.id}
+                    className="relative group p-6 sm:p-8 rounded-2xl bg-cyber-darker/90 border border-cyber-border hover:border-cyber-cyan/50 transition-all duration-300 hover:shadow-xl"
+                  >
+                    {/* Glow effect on hover */}
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-cyber-cyan/5 rounded-full blur-3xl group-hover:bg-cyber-cyan/10 transition-all"></div>
+
+                    <div className="relative space-y-4">
+                      
+                      {/* Top meta row */}
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                            item.glow === 'cyan' ? 'bg-cyan-500/10 text-cyber-cyan border border-cyan-500/30' : 'bg-emerald-500/10 text-cyber-neonGreen border border-emerald-500/30'
+                          }`}>
+                            <Icon name={item.icon} className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <span className="text-xs font-mono text-slate-400 block">{item.provider}</span>
+                            <h3 className="text-lg font-bold text-white group-hover:text-cyber-cyan transition-colors">
+                              {item.title}
+                            </h3>
+                          </div>
+                        </div>
+
+                        <span className={`text-[11px] font-mono px-2.5 py-1 rounded-full whitespace-nowrap ${
+                          item.glow === 'cyan' ? 'bg-cyan-500/10 text-cyber-cyan border border-cyan-500/20' : 'bg-emerald-500/10 text-cyber-neonGreen border border-emerald-500/20'
+                        }`}>
+                          {item.badge}
+                        </span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-slate-300 leading-relaxed">
+                        {item.description}
+                      </p>
+
+                      {/* Key Topic Chips */}
+                      <div className="pt-2">
+                        <div className="text-xs font-mono text-slate-400 mb-2 flex items-center gap-1.5">
+                          <Icon name="check-circle" className="w-3.5 h-3.5 text-cyber-neonGreen" />
+                          <span>Core Competencies Covered:</span>
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {item.topics.map((topic, i) => (
+                            <span
+                              key={i}
+                              className="text-[11px] font-mono px-2.5 py-1 rounded bg-cyber-slate/50 border border-cyber-border text-slate-300"
+                            >
+                              {topic}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+
+            {/* ======================================================== */}
+            {/* 4. TECHNICAL & SOFT SKILLS */}
+            {/* ======================================================== */}
+            <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-cyber-slate/60">
+              <div className="text-center space-y-3 mb-12">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyber-cyan/10 text-cyber-cyan text-xs font-mono border border-cyber-cyan/20">
+                  <Icon name="cpu" className="w-3.5 h-3.5" />
+                  ARSENAL & TOOLKIT
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                  Technical & <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green">Soft Skills</span>
+                </h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                  Categorized matrix of offensive security, enterprise infrastructure, and modern frontend technologies.
+                </p>
+
+                {/* Filter Tabs */}
+                <div className="flex flex-wrap justify-center gap-2 pt-6">
+                  {skillCategories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => setActiveSkillCategory(cat.id)}
+                      className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all ${
+                        activeSkillCategory === cat.id
+                          ? 'bg-cyber-cyan text-cyber-black font-bold shadow-neon-cyan'
+                          : 'bg-cyber-darker text-slate-300 border border-cyber-border hover:border-cyber-cyan/40 hover:text-white'
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Skills Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {skillsData
+                  .filter((group) => activeSkillCategory === 'all' || group.category === activeSkillCategory)
+                  .map((group, index) => (
+                    <div
+                      key={index}
+                      className={`rounded-2xl p-6 sm:p-8 bg-cyber-darker/90 border ${group.borderColor} relative overflow-hidden shadow-xl`}
+                    >
+                      {/* Top Header */}
+                      <div className="flex items-center justify-between pb-6 border-b border-cyber-border">
+                        <div className="flex items-center gap-3">
+                          <div className="w-12 h-12 rounded-xl bg-cyber-dark border border-cyber-border flex items-center justify-center text-white">
+                            <Icon name={group.icon} className={`w-6 h-6 ${group.accentText}`} />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-white">{group.title}</h3>
+                            <span className="text-xs font-mono text-slate-400">{group.issuer}</span>
+                          </div>
+                        </div>
+                        <span className={`text-xs font-mono px-2.5 py-1 rounded ${group.accentText} bg-cyber-slate/50 border border-cyber-border`}>
+                          {group.skills.length} Items
+                        </span>
+                      </div>
+
+                      {/* Skill items */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-6">
+                        {group.skills.map((skill, sIdx) => (
+                          <div
+                            key={sIdx}
+                            className="p-3 rounded-xl bg-cyber-dark/60 border border-cyber-border hover:border-cyber-cyan/40 transition-all group flex items-start gap-3"
+                          >
+                            <div className="w-7 h-7 rounded-lg bg-cyber-slate/60 flex items-center justify-center shrink-0 text-slate-400 group-hover:text-cyber-cyan transition-colors">
+                              <Icon name={skill.icon} className="w-3.5 h-3.5" />
+                            </div>
+                            <div className="overflow-hidden">
+                              <div className="text-xs font-bold text-slate-200 group-hover:text-white truncate">
+                                {skill.name}
+                              </div>
+                              <div className="text-[11px] font-mono text-slate-400 truncate">
+                                {skill.level}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                    </div>
+                  ))}
+              </div>
+            </section>
+
+
+            {/* ======================================================== */}
+            {/* 5. FEATURED PROJECTS WITH INTERACTIVE MODALS */}
+            {/* ======================================================== */}
+            <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-cyber-slate/60">
+              <div className="text-center space-y-3 mb-16">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyber-cyan/10 text-cyber-cyan text-xs font-mono border border-cyber-cyan/20">
+                  <Icon name="folder-code" className="w-3.5 h-3.5" />
+                  CASE STUDIES & AUDITS
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                  Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green">Projects</span>
+                </h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                  Real-world security audits, Cisco multi-tier network topologies, and penetration testing walkthroughs.
+                </p>
+              </div>
+
+              {/* Projects Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {projects.map((proj) => (
+                  <div
+                    key={proj.id}
+                    className="flex flex-col rounded-2xl bg-cyber-darker border border-cyber-border hover:border-cyber-cyan/50 transition-all duration-300 group hover:-translate-y-1 shadow-xl overflow-hidden"
+                  >
+                    {/* Project Image Banner */}
+                    <div className="relative h-48 overflow-hidden bg-cyber-dark">
+                      <img
+                        src={proj.image}
+                        alt={proj.title}
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-70 group-hover:opacity-90"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-cyber-darker via-cyber-darker/40 to-transparent"></div>
+                      
+                      {/* Category Badge */}
+                      <div className="absolute top-3 left-3 bg-cyber-darker/90 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-mono text-cyber-cyan border border-cyber-cyan/30 flex items-center gap-1.5">
+                        <Icon name={proj.icon} className="w-3.5 h-3.5" />
+                        {proj.category}
+                      </div>
+
+                      <div className="absolute top-3 right-3 bg-cyber-darker/80 backdrop-blur-md px-2.5 py-1 rounded text-[11px] font-mono text-slate-400">
+                        {proj.date}
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                      <div className="space-y-2">
+                        <span className="text-xs font-mono text-cyber-green font-semibold">
+                          {proj.badge}
+                        </span>
+                        <h3 className="text-lg font-bold text-white group-hover:text-cyber-cyan transition-colors">
+                          {proj.title}
+                        </h3>
+                        <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed">
+                          {proj.shortDesc}
+                        </p>
+                      </div>
+
+                      {/* Tech Chips */}
+                      <div className="space-y-4">
+                        <div className="flex flex-wrap gap-1.5">
+                          {proj.tags.slice(0, 4).map((tag, idx) => (
+                            <span
+                              key={idx}
+                              className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-slate/60 text-slate-300 border border-cyber-border"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Interactive Modal Trigger */}
+                        <button
+                          onClick={() => setSelectedProject(proj)}
+                          className="w-full py-2.5 px-4 rounded-xl text-xs font-mono font-bold text-center bg-cyber-slate/50 border border-cyber-border group-hover:border-cyber-cyan group-hover:bg-cyber-cyan group-hover:text-cyber-black transition-all flex items-center justify-center gap-2"
+                        >
+                          <Icon name="external-link" className="w-3.5 h-3.5" />
+                          <span>View Full Technical Dossier</span>
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                ))}
+              </div>
+            </section>
+
+
+            {/* ======================================================== */}
+            {/* 6. PHOTO GALLERY & CAMPUS LIFE */}
+            {/* ======================================================== */}
+            <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-cyber-slate/60">
+              <div className="text-center space-y-3 mb-16">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyber-green/10 text-cyber-neonGreen text-xs font-mono border border-cyber-green/20">
+                  <Icon name="image" className="w-3.5 h-3.5" />
+                  MOMENTS & MILESTONES
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                  Profile & <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green">Campus Gallery</span>
+                </h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                  A glimpse into academic life at the Faculty of Computers & AI, executive portraits, and student initiatives.
+                </p>
+              </div>
+
+              {/* Gallery Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                {galleryPhotos.map((photo, index) => (
+                  <div
+                    key={index}
+                    onClick={() => setSelectedPhoto(photo)}
+                    className="group relative rounded-2xl overflow-hidden bg-cyber-darker border border-cyber-border hover:border-cyber-cyan transition-all duration-300 cursor-pointer shadow-lg aspect-[3/4]"
+                  >
+                    <img
+                      src={photo.src}
+                      alt={photo.title}
+                      className="w-full h-full object-cover object-top group-hover:scale-108 transition-transform duration-700 filter group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-cyber-darker via-cyber-darker/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+
+                    {/* Badge */}
+                    <div className="absolute top-3 left-3 bg-cyber-darker/90 backdrop-blur-md px-2.5 py-1 rounded text-[10px] font-mono text-cyber-cyan border border-cyber-cyan/30">
+                      {photo.tag}
+                    </div>
+
+                    {/* Bottom Caption */}
+                    <div className="absolute bottom-0 inset-x-0 p-4 space-y-1 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                      <div className="text-xs font-bold text-white group-hover:text-cyber-cyan transition-colors">
+                        {photo.title}
+                      </div>
+                      <p className="text-[11px] text-slate-400 line-clamp-1">
+                        {photo.subtitle}
+                      </p>
+                      <div className="pt-1 flex items-center gap-1 text-[10px] text-cyber-neonGreen font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Icon name="zoom-in" className="w-3 h-3" />
+                        <span>Click to view full photo</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+
+            {/* ======================================================== */}
+            {/* 7. CONTACT & GET IN TOUCH */}
+            {/* ======================================================== */}
+            <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-cyber-slate/60">
+              <div className="text-center space-y-3 mb-16">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyber-cyan/10 text-cyber-cyan text-xs font-mono border border-cyber-cyan/20">
+                  <Icon name="terminal" className="w-3.5 h-3.5" />
+                  ESTABLISH SECURE LINK
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-white">
+                  Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan to-cyber-green">Touch</span>
+                </h2>
+                <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base">
+                  Looking for a dedicated Cybersecurity Auditor, Network Specialist, or Front-End Developer? Let's connect!
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                
+                {/* Left Column: Direct Contact Info */}
+                <div className="lg:col-span-5 space-y-6">
+                  
+                  <div className="p-6 rounded-2xl bg-cyber-darker border border-cyber-border space-y-6">
+                    <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                      <Icon name="mail" className="w-5 h-5 text-cyber-cyan" />
+                      <span>Contact Channels</span>
+                    </h3>
+
+                    <div className="space-y-4">
+                      {/* Email */}
+                      <div className="p-3.5 rounded-xl bg-cyber-dark/80 border border-cyber-border flex items-center justify-between group">
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-cyber-cyan/10 flex items-center justify-center text-cyber-cyan">
+                            <Icon name="at-sign" className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[11px] font-mono text-slate-400 block">Direct Email</span>
+                            <span className="text-xs sm:text-sm font-semibold text-white">malak.elbendary.sec@gmail.com</span>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => copyToClipboard('malak.elbendary.sec@gmail.com', 'email')}
+                          className="p-2 rounded-lg bg-cyber-slate/50 hover:bg-cyber-cyan hover:text-cyber-black text-slate-300 transition-colors"
+                          title="Copy Email"
+                        >
+                          <Icon name={copiedText === 'email' ? 'check' : 'copy'} className="w-4 h-4" />
+                        </button>
+                      </div>
+
+                      {/* LinkedIn */}
+                      <a
+                        href="https://www.linkedin.com/in/malak-emad-elbendary"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-3.5 rounded-xl bg-cyber-dark/80 border border-cyber-border flex items-center justify-between group hover:border-cyber-cyan/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="w-9 h-9 rounded-lg bg-blue-600/10 flex items-center justify-center text-blue-400">
+                            <Icon name="linkedin" className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="text-[11px] font-mono text-slate-400 block">LinkedIn Profile</span>
+                            <span className="text-xs sm:text-sm font-semibold text-white group-hover:text-cyber-cyan transition-colors">
+                              linkedin.com/in/malak-emad-elbendary
+                            </span>
+                          </div>
+                        </div>
+                        <Icon name="arrow-up-right" className="w-4 h-4 text-slate-400 group-hover:text-cyber-cyan transition-colors" />
+                      </a>
+
+                      {/* Location */}
+                      <div className="p-3.5 rounded-xl bg-cyber-dark/80 border border-cyber-border flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+                          <Icon name="map-pin" className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <span className="text-[11px] font-mono text-slate-400 block">Location</span>
+                          <span className="text-xs sm:text-sm font-semibold text-white">Egypt — Open to Remote & Onsite Opportunities</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Quick CV Download card */}
+                  <div className="p-6 rounded-2xl bg-gradient-to-r from-cyber-cyan/10 to-cyber-green/10 border border-cyber-cyan/30 flex items-center justify-between">
+                    <div>
+                      <div className="text-sm font-bold text-white">Need an ATS-Ready Resume?</div>
+                      <div className="text-xs text-slate-400">Download formatted technical profile</div>
+                    </div>
+                    <button
+                      onClick={() => setCvModalOpen(true)}
+                      className="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-cyber-cyan text-cyber-black hover:shadow-neon-cyan transition-all"
+                    >
+                      View CV
+                    </button>
+                  </div>
+
+                </div>
+
+                {/* Right Column: Interactive Secure Message Form */}
+                <div className="lg:col-span-7">
+                  <div className="p-6 sm:p-8 rounded-2xl bg-cyber-darker border border-cyber-border relative shadow-2xl">
+                    <h3 className="text-lg font-bold text-white mb-2">Send an Encrypted Inquiry</h3>
+                    <p className="text-xs text-slate-400 mb-6">
+                      Have an internship opportunity, project collaboration, or security inquiry? Leave a message below.
+                    </p>
+
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        alert('Message sent successfully! Malak will get back to you shortly.');
+                        e.target.reset();
+                      }}
+                      className="space-y-4"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-mono text-slate-300 mb-1.5">Your Name</label>
+                          <input
+                            type="text"
+                            required
+                            placeholder="e.g. Dr. Ahmed / Sarah Connor"
+                            className="w-full px-4 py-3 rounded-xl bg-cyber-dark border border-cyber-border text-slate-200 text-sm focus:outline-none focus:border-cyber-cyan transition-colors"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-mono text-slate-300 mb-1.5">Your Email</label>
+                          <input
+                            type="email"
+                            required
+                            placeholder="name@company.com"
+                            className="w-full px-4 py-3 rounded-xl bg-cyber-dark border border-cyber-border text-slate-200 text-sm focus:outline-none focus:border-cyber-cyan transition-colors"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-mono text-slate-300 mb-1.5">Subject / Opportunity Type</label>
+                        <select className="w-full px-4 py-3 rounded-xl bg-cyber-dark border border-cyber-border text-slate-200 text-sm focus:outline-none focus:border-cyber-cyan transition-colors">
+                          <option>Cybersecurity & PenTesting Role / Internship</option>
+                          <option>Network Infrastructure Project</option>
+                          <option>Front-End Development Opportunity</option>
+                          <option>Academic or Research Collaboration</option>
+                          <option>General Networking & Inquiries</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-mono text-slate-300 mb-1.5">Your Message</label>
+                        <textarea
+                          rows="4"
+                          required
+                          placeholder="Detail your message, project scope, or opportunity..."
+                          className="w-full px-4 py-3 rounded-xl bg-cyber-dark border border-cyber-border text-slate-200 text-sm focus:outline-none focus:border-cyber-cyan transition-colors"
+                        ></textarea>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full py-3.5 rounded-xl font-mono text-sm font-bold text-cyber-black bg-gradient-to-r from-cyber-cyan to-cyber-green hover:shadow-neon-cyan transition-all flex items-center justify-center gap-2"
+                      >
+                        <Icon name="send" className="w-4 h-4" />
+                        <span>Transmit Message</span>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+          </main>
+
+
+          {/* ======================================================== */}
+          {/* FOOTER */}
+          {/* ======================================================== */}
+          <footer className="relative z-10 bg-cyber-darker border-t border-cyber-slate/80 py-12 px-4 sm:px-6 lg:px-8 text-slate-400">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+              
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyber-cyan to-cyber-green p-[2px]">
+                  <div className="w-full h-full bg-cyber-darker rounded-[10px] flex items-center justify-center font-mono font-bold text-cyber-cyan text-sm">
+                    ME
+                  </div>
+                </div>
+                <div>
+                  <span className="font-bold text-white text-sm">Malak Emad Elbendary</span>
+                  <p className="text-xs text-slate-500 font-mono">Cybersecurity & Network Engineer | Front-End Developer</p>
+                </div>
+              </div>
+
+              {/* Social links */}
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.linkedin.com/in/malak-emad-elbendary"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-10 h-10 rounded-xl bg-cyber-dark border border-cyber-border hover:border-cyber-cyan hover:text-cyber-cyan flex items-center justify-center transition-colors"
+                  aria-label="LinkedIn"
+                >
+                  <Icon name="linkedin" className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:malak.elbendary.sec@gmail.com"
+                  className="w-10 h-10 rounded-xl bg-cyber-dark border border-cyber-border hover:border-cyber-cyan hover:text-cyber-cyan flex items-center justify-center transition-colors"
+                  aria-label="Email"
+                >
+                  <Icon name="mail" className="w-5 h-5" />
+                </a>
+              </div>
+
+              {/* Security signature */}
+              <div className="text-center md:text-right text-xs font-mono text-slate-500 space-y-1">
+                <div>Built with React, Tailwind CSS & Lucide Icons</div>
+                <div className="text-cyber-cyan/80">SHA-256 Verified // Dark Mode Cyber Architecture</div>
+              </div>
+
+            </div>
+          </footer>
+
+
+          {/* ======================================================== */}
+          {/* PROJECT DETAIL MODAL */}
+          {/* ======================================================== */}
+          {selectedProject && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cyber-black/85 backdrop-blur-md overflow-y-auto">
+              <div 
+                className="relative w-full max-w-3xl my-8 bg-cyber-darker border border-cyber-cyan/40 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Modal Header */}
+                <div className="px-6 py-4 bg-cyber-dark border-b border-cyber-border flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-3 h-3 rounded-full bg-cyber-cyan"></span>
+                    <span className="text-xs font-mono text-slate-400">PROJECT DOSSIER // {selectedProject.category.toUpperCase()}</span>
+                  </div>
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-cyber-slate/50"
+                  >
+                    <Icon name="x" className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* Modal Body */}
+                <div className="p-6 sm:p-8 space-y-6 max-h-[80vh] overflow-y-auto">
+                  
+                  {/* Title & Badge */}
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-cyber-green/10 text-cyber-neonGreen border border-cyber-green/30">
+                        {selectedProject.badge}
+                      </span>
+                      <span className="text-xs font-mono text-slate-400">{selectedProject.date}</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                      {selectedProject.title}
+                    </h3>
+                  </div>
+
+                  {/* Overview */}
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-mono text-cyber-cyan uppercase tracking-wider flex items-center gap-1.5">
+                      <Icon name="file-text" className="w-4 h-4" />
+                      Executive Summary & Objective
+                    </h4>
+                    <p className="text-sm text-slate-300 leading-relaxed">
+                      {selectedProject.overview}
+                    </p>
+                  </div>
+
+                  {/* Key Highlights */}
+                  <div className="space-y-3">
+                    <h4 className="text-xs font-mono text-cyber-neonGreen uppercase tracking-wider flex items-center gap-1.5">
+                      <Icon name="shield-check" className="w-4 h-4" />
+                      Key Technical Deliverables & Methodology
+                    </h4>
+                    <ul className="space-y-2">
+                      {selectedProject.highlights.map((hl, hIdx) => (
+                        <li key={hIdx} className="text-xs sm:text-sm text-slate-300 flex items-start gap-2.5">
+                          <Icon name="chevron-right" className="w-4 h-4 text-cyber-cyan shrink-0 mt-0.5" />
+                          <span>{hl}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tools Used */}
+                  <div className="space-y-2">
+                    <h4 className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                      Tools, Runtimes & Frameworks:
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tools.map((t, idx) => (
+                        <span key={idx} className="text-xs font-mono px-3 py-1 rounded bg-cyber-slate/50 border border-cyber-border text-slate-200">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Code Snippet / Config Demonstration */}
+                  {selectedProject.codeSnippet && (
+                    <div className="space-y-2">
+                      <h4 className="text-xs font-mono text-cyber-cyan uppercase tracking-wider flex items-center gap-1.5">
+                        <Icon name="terminal" className="w-4 h-4" />
+                        Artifact / CLI Configuration Extract
+                      </h4>
+                      <pre className="p-4 rounded-xl bg-cyber-black border border-cyber-border font-mono text-xs text-cyber-cyan/90 overflow-x-auto leading-relaxed">
+                        <code>{selectedProject.codeSnippet}</code>
+                      </pre>
+                    </div>
+                  )}
+
+                </div>
+
+                {/* Modal Footer */}
+                <div className="px-6 py-4 bg-cyber-dark border-t border-cyber-border flex justify-end">
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="px-5 py-2 rounded-xl text-xs font-mono font-bold bg-cyber-cyan text-cyber-black hover:bg-cyber-cyan/90"
+                  >
+                    Close Dossier
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+
+          {/* ======================================================== */}
+          {/* PHOTO LIGHTBOX MODAL */}
+          {/* ======================================================== */}
+          {selectedPhoto && (
+            <div 
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cyber-black/90 backdrop-blur-md"
+              onClick={() => setSelectedPhoto(null)}
+            >
+              <div 
+                className="relative max-w-xl w-full bg-cyber-darker border border-cyber-border rounded-2xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div className="relative aspect-[4/5] bg-cyber-dark">
+                  <img
+                    src={selectedPhoto.src}
+                    alt={selectedPhoto.title}
+                    className="w-full h-full object-contain"
+                  />
+                  <button
+                    onClick={() => setSelectedPhoto(null)}
+                    className="absolute top-3 right-3 p-2 rounded-full bg-cyber-black/70 text-white hover:bg-cyber-cyan hover:text-cyber-black transition-colors"
+                  >
+                    <Icon name="x" className="w-5 h-5" />
+                  </button>
+                </div>
+                <div className="p-4 space-y-1">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/20">
+                    {selectedPhoto.category}
+                  </span>
+                  <h4 className="text-sm font-bold text-white">{selectedPhoto.title}</h4>
+                  <p className="text-xs text-slate-400">{selectedPhoto.subtitle}</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+
+          {/* ======================================================== */}
+          {/* CV / RESUME MODAL (ATS-Ready + Print/Save) */}
+          {/* ======================================================== */}
+          {cvModalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cyber-black/90 backdrop-blur-md overflow-y-auto">
+              <div 
+                className="relative w-full max-w-4xl my-8 bg-cyber-darker border border-cyber-cyan/40 rounded-2xl shadow-2xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* CV Modal Toolbar */}
+                <div className="px-6 py-4 bg-cyber-dark border-b border-cyber-border flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Icon name="file-text" className="w-5 h-5 text-cyber-cyan" />
+                    <span className="text-sm font-bold text-white font-mono">Curriculum Vitae — Malak Emad Elbendary</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => window.print()}
+                      className="px-3 py-1.5 rounded-lg text-xs font-mono font-semibold bg-cyber-slate/60 text-slate-200 border border-cyber-border hover:border-cyber-cyan hover:text-cyber-cyan flex items-center gap-1.5"
+                    >
+                      <Icon name="printer" className="w-3.5 h-3.5" />
+                      <span>Print / Save as PDF</span>
+                    </button>
+                    <button
+                      onClick={() => setCvModalOpen(false)}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-cyber-slate/50"
+                    >
+                      <Icon name="x" className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Printable ATS-Friendly Resume Content */}
+                <div className="p-6 sm:p-10 space-y-8 max-h-[80vh] overflow-y-auto bg-slate-900 text-slate-200 font-sans">
+                  
+                  {/* CV Header */}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-700 pb-6">
+                    <div>
+                      <h1 className="text-2xl sm:text-3xl font-extrabold text-white">Malak Emad Elbendary</h1>
+                      <p className="text-cyber-cyan font-mono text-sm font-semibold mt-1">
+                        Cybersecurity & Network Engineer | Front-End Web Developer
+                      </p>
+                      <p className="text-xs text-slate-400 mt-1">
+                        Faculty of Computers & Artificial Intelligence Student — Computer Science Major
+                      </p>
+                    </div>
+
+                    <div className="text-xs font-mono space-y-1 text-slate-300">
+                      <div>📧 malak.elbendary.sec@gmail.com</div>
+                      <div>🔗 <a href="https://www.linkedin.com/in/malak-emad-elbendary" target="_blank" rel="noreferrer" className="text-cyber-cyan hover:underline">linkedin.com/in/malak-emad-elbendary</a></div>
+                      <div>📍 Egypt (Available for Remote / Hybrid)</div>
+                    </div>
+                  </div>
+
+                  {/* Professional Summary */}
+                  <div className="space-y-2">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-cyber-cyan font-mono border-b border-slate-700 pb-1">
+                      Professional Summary
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      Computer Science student with hands-on technical training from leading national initiatives and industry programs. Specializes in web application security auditing, vulnerability assessments (XSS, SQL Injection), enterprise Cisco network topology design, and building high-performance, responsive web interfaces with React and Tailwind CSS.
+                    </p>
+                  </div>
+
+                  {/* Education */}
+                  <div className="space-y-2">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-cyber-cyan font-mono border-b border-slate-700 pb-1">
+                      Education
+                    </h3>
+                    <div>
+                      <div className="flex justify-between items-center text-sm font-bold text-white">
+                        <span>Faculty of Computers and Artificial Intelligence</span>
+                        <span className="text-xs font-mono text-slate-400">Undergraduate</span>
+                      </div>
+                      <div className="text-xs text-cyber-green font-mono">Bachelor of Science in Computer Science</div>
+                    </div>
+                  </div>
+
+                  {/* Technical Trainings & Certifications */}
+                  <div className="space-y-4">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-cyber-cyan font-mono border-b border-slate-700 pb-1">
+                      Trainings & Certifications
+                    </h3>
+                    
+                    <div className="space-y-3 text-xs sm:text-sm">
+                      <div>
+                        <div className="flex justify-between font-bold text-white">
+                          <span>Cybersecurity Summer Training</span>
+                          <span className="text-xs font-mono text-slate-400">National Telecommunication Institute (NTI)</span>
+                        </div>
+                        <p className="text-xs text-slate-300 mt-1">
+                          Practical labs in web application penetration testing, vulnerability assessment (Reflected, Stored, and DOM XSS; SQL Injection), OWASP Top 10 auditing, Burp Suite, Metasploit, Nmap, and Kali Linux.
+                        </p>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between font-bold text-white">
+                          <span>Network Infrastructure & Cisco CCNA</span>
+                          <span className="text-xs font-mono text-slate-400">National Telecommunication Institute (NTI)</span>
+                        </div>
+                        <p className="text-xs text-slate-300 mt-1">
+                          Configuration of enterprise topologies in Cisco Packet Tracer, VLANs, 802.1Q trunking, Inter-VLAN routing, multi-area OSPF, EtherChannel (LACP), Standard & Extended ACL security rules, SLAAC & DHCPv6.
+                        </p>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between font-bold text-white">
+                          <span>Web Development Track</span>
+                          <span className="text-xs font-mono text-slate-400">NextGen Initiative</span>
+                        </div>
+                        <p className="text-xs text-slate-300 mt-1">
+                          Foundational front-end engineering covering semantic HTML5, modern CSS3 styling, responsive layouts, and ES6+ JavaScript.
+                        </p>
+                      </div>
+
+                      <div>
+                        <div className="flex justify-between font-bold text-white">
+                          <span>React Frontend Development</span>
+                          <span className="text-xs font-mono text-slate-400">Self-Directed</span>
+                        </div>
+                        <p className="text-xs text-slate-300 mt-1">
+                          Building component-based user interfaces with React hooks, modular architecture, and Tailwind CSS.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Skills Grid */}
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-cyber-cyan font-mono border-b border-slate-700 pb-1">
+                      Technical Skills Breakdown
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                      <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+                        <span className="font-bold text-white block mb-1">Cybersecurity (NTI):</span>
+                        <span className="text-slate-300">Penetration Testing, Vulnerability Assessment (XSS, SQLi), Burp Suite, Metasploit, Nmap, Kali Linux, DVWA, OWASP Top 10.</span>
+                      </div>
+                      <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+                        <span className="font-bold text-white block mb-1">Networking & Infrastructure (NTI):</span>
+                        <span className="text-slate-300">Cisco CCNA Concepts, Packet Tracer, Enterprise Topology Design, VLANs, Inter-VLAN Routing, OSPF, EtherChannel, ACLs, SLAAC & DHCPv6.</span>
+                      </div>
+                      <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+                        <span className="font-bold text-white block mb-1">Web Development:</span>
+                        <span className="text-slate-300">HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Responsive Web Design.</span>
+                      </div>
+                      <div className="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+                        <span className="font-bold text-white block mb-1">Soft Skills:</span>
+                        <span className="text-slate-300">Problem Solving, Teamwork & Collaboration, Technical Report Writing, Effective Communication, Time Management.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Projects Highlight */}
+                  <div className="space-y-3">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-cyber-cyan font-mono border-b border-slate-700 pb-1">
+                      Featured Projects
+                    </h3>
+                    <div className="space-y-2 text-xs sm:text-sm">
+                      <div>
+                        <span className="font-bold text-white">DVWA Web Vulnerability Assessment: </span>
+                        <span className="text-slate-300">Proof-of-concept testing for Reflected, Stored, and DOM-based XSS and SQL Injection with secure coding remediation.</span>
+                      </div>
+                      <div>
+                        <span className="font-bold text-white">Multi-Switch Enterprise Network Architecture: </span>
+                        <span className="text-slate-300">Multi-tier topology in Cisco Packet Tracer with VLAN segmentation, OSPF routing, EtherChannel redundancy, and ACL rules.</span>
+                      </div>
+                      <div>
+                        <span className="font-bold text-white">Metasploitable Penetration Testing Audit: </span>
+                        <span className="text-slate-300">Conducted vulnerability scanning and exploit analysis using Nmap and the Metasploit Framework on target VMs.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Modal Footer */}
+                <div className="px-6 py-4 bg-cyber-dark border-t border-cyber-border flex justify-between items-center">
+                  <span className="text-xs font-mono text-slate-400">PDF printable format enabled</span>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => window.print()}
+                      className="px-4 py-2 rounded-xl text-xs font-mono font-bold bg-cyber-cyan text-cyber-black hover:shadow-neon-cyan transition-all flex items-center gap-1.5"
+                    >
+                      <Icon name="download" className="w-4 h-4" />
+                      <span>Download / Print PDF</span>
+                    </button>
+                    <button
+                      onClick={() => setCvModalOpen(false)}
+                      className="px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-cyber-slate/50 text-slate-300 hover:text-white"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    // Render App
+    const rootElement = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<App />);
+  </script>
+</body>
+</html>
